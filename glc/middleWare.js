@@ -1,15 +1,29 @@
+const request = require('request')
 const middleware = {
   list(req, res) {
-    // クライアントに送るJSONデータ
-      const todoList = [
-          { title: 'JavaScriptを勉強する', done: true },
-          { title: 'Node.jsを勉強する', done: false },
-          { title: 'Web APIを作る', done: false }
-      ];
-      // JSONを送信する
-      res.json(todoList);
-
+    const headers = {
+    "content-type": "application/json"
+    }
+    const param = {
+      "events":[
+        {
+          "source":"dummy",
+          "message":{
+            "text":"テストです"
+          }
+        }
+      ]
+    }
+    const option = {
+      url: "http://localhost:3000/send-to-line",
+      headers: headers,
+      body: JSON.stringify(param),
+    }
+    request.post(option,(error,response,body)=>{
+      res.json(JSON.parse(body))
+    })
   },
+
   sendToLine(req, res) {
     const body = req.body
     body.events[0].response ='added'
