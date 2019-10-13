@@ -55,6 +55,7 @@ const middleware = {
       console.log(JSON.stringify(body))
       res.status(200).send('OK');
     }
-  },
+  }
+  }
 }
 module.exports = middleware
