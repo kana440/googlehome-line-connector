@@ -26,6 +26,7 @@ const middleware = {
 
   sendToLine(req, res) {
     const body = req.body
+    console.log(JSON.stringify(body))
     body.events[0].response ='added'
     res.json(body)
   },

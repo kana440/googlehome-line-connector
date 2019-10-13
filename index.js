@@ -13,4 +13,4 @@ app.get('/glc/list', middleware.list);
 app.post('/send-to-line', middleware.sendToLine);
 
 // ポート3000でサーバを立てる
-app.listen(3000, () => console.log('Listening on port 3000'));
+app.listen(8082, () => console.log('Listening on port 8082'));
