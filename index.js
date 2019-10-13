@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const middleware = require('./glc/middleware')
+const middleware = require('./glc/middleWare')
 
 app.use(bodyParser.urlencoded({
     extended: true
