@@ -5,6 +5,8 @@ const config = {
     channelSecret: '30100c79aa2851f2cad3aef97f4c863e'
 };
 const client = new line.Client(config);
+const iGroup = 'C581653995b59786d0da59de4a437e689';
+const iDad = 'U7921c3e581a9906058d28807f3e04d2b';
 
 
 const middleware = {
@@ -35,13 +37,24 @@ const middleware = {
   sendToLine(req, res) {
     const body = req.body
     if(body.mode === "write") {
-      // iftttからのとき
+      // googlehome->ifttt->からのとき
       const sendmessage = req.body.text.replace(/\s+/g,"");
       client.pushMessage(iGroup,{type:'text', text:sendmessage});
-      res.status(200).send('Hello, world!');
+      res.status(200).send('OK');
+    } else {
+      // lineからのとき
+      if(req.body.events){
+        const userId = body.events[0].source.userId;
+        let textmain = body.events[0].message.text;
+        if(userId === iDad) {
+          textmain = "パパからです。" + textmain;
+        } else {
+          textmain = "ママからです。" + textmain;
+        }
+      console.log("talk request:",textmain)
+      console.log(JSON.stringify(body))
+      res.status(200).send('OK');
     }
-    console.log(JSON.stringify(body))
-    res.json(body)
   },
 }
 module.exports = middleware
