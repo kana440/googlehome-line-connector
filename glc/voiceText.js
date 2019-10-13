@@ -1,4 +1,4 @@
-const apiKey = 'ytjx9tyog1ccdxc9'
+const apiKey = require('../key').apiKey
 const request = require('request')
 const fs = require("fs");
 const googlehome= require("./googlehome")
