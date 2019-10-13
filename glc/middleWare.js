@@ -1,5 +1,6 @@
 const request = require('request')
 const line = require('@line/bot-sdk')
+const voiceText = require('./voiceText')
 const config = {
     channelAccessToken: 'u1spB4GU6nsQAavM3O6t12jgIRsfskhMuJdvwFahDGsVqJSzdiDMhXa/1oUEOvpw5tEhxFdKNgrpUtBlGpqobXybwU42pJoIFdeaMZFRj8sMK4sUbvl+o2SK7RwxbjC+kPE0jx37/kdSKO8UTsaSXwdB04t89/1O/w1cDnyilFU=',
     channelSecret: '30100c79aa2851f2cad3aef97f4c863e'
@@ -51,8 +52,7 @@ const middleware = {
         } else {
           textmain = "ママからです。" + textmain;
         }
-      console.log("talk request:",textmain)
-      console.log(JSON.stringify(body))
+      voiceText(textmain)
       res.status(200).send('OK');
     }
   }
